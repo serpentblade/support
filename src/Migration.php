@@ -93,6 +93,7 @@ abstract class Migration extends IlluminateMigration
 		try 
 		{
 			$this->{$method}();
+			$this->connection->commit();
 		} 
 		catch (\Exception $exception)
 		{
@@ -100,8 +101,6 @@ abstract class Migration extends IlluminateMigration
 
 			$this->handleException($exception);
 		}
-
-		$this->connection->commit();
 	}
 
 	/**
